@@ -1,12 +1,16 @@
 class Cities {
 
-  String location;
-  double temp;
+  String location="Ankara";
+  double? temp;
   static const String apiKey = '82a901440a625f76298f02a43e1ba910';
 
   Cities({ this.location="Ankara",this.temp=20.0});
 
+  ///Singleton
+  static final Cities instance = Cities._();
+  Cities._();
 
+  ///
   factory Cities.fromJson(Map<String, dynamic> json) {
     return Cities(
       location: json['name'],

@@ -14,15 +14,12 @@ class HomePageView extends StatefulWidget {
 class _HomePageViewState extends State<HomePageView> {
   @override
   void initState() {
+    HomePageViewModels.instance.getCityInfo();
     super.initState();
-    HomePageViewModels h = HomePageViewModels();
-    h.getCityInfo();
   }
 
   @override
   Widget build(BuildContext context) {
-    HomePageViewModels h = HomePageViewModels();
-
     return ChangeNotifierProvider<HomePageViewModels>(
       create: (_) => HomePageViewModels(),
       builder: (context, child) => Container(
@@ -37,10 +34,14 @@ class _HomePageViewState extends State<HomePageView> {
           body: Center(
             child: SingleChildScrollView(
               child: FutureBuilder<Cities>(
-                future: h.getCityInfo(),
+                future: Provider.of<HomePageViewModels>(context).getCityInfo(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return Text('Something went wrong ! ${snapshot.error}');
+                    return Center(
+                      child: Text(
+                        "Something went wrong",
+                      ),
+                    );
                   } else if (snapshot.hasData) {
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -77,8 +78,10 @@ class _HomePageViewState extends State<HomePageView> {
                       ],
                     );
                   } else {
-                    return CircularProgressIndicator(
-                      color: Colors.white,
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
                     );
                   }
                 },

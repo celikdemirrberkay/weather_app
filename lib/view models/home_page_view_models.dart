@@ -8,22 +8,22 @@ import '../views/search_page_view.dart';
 
 class HomePageViewModels extends ChangeNotifier {
 
+  HomePageViewModels();
+
   /// Singleton
-  static final HomePageViewModels _singleton = HomePageViewModels._internal();
-  factory HomePageViewModels() {
-    return _singleton;
-  }
-  HomePageViewModels._internal();
+  static final HomePageViewModels instance = HomePageViewModels._();
+  HomePageViewModels._();
+
   /// Objeler
   Cities _cities = Cities();
   ApiData _apiData = ApiData();
 
 
   /// Gelen şehri döndürüyoruz.
-   getCityInfo() {
-     HomePageViewModels h = HomePageViewModels();
-     return  _apiData.locationDataParsed;
+   Future<Cities> getCityInfo() async{
+     return  await _apiData.getLocationDataFromApi();
   }
+
 
 
 
