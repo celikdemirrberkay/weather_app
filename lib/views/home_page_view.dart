@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/view%20models/home_page_view_models.dart';
 import 'package:weather_app/views/styles/font_style.dart';
-
 import '../models/cities.dart';
 
 class HomePageView extends StatefulWidget {
@@ -47,7 +46,7 @@ class _HomePageViewState extends State<HomePageView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "${snapshot.data!.temp}",
+                          "${snapshot.data!.temp}°C",
                           style: myTextStyle(color: Colors.white, fontSize: 80),
                         ),
                         SizedBox(

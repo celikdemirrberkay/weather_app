@@ -9,7 +9,7 @@ class ApiData {
   Future<Cities> getLocationDataFromApi() async {
     final locationData = await http.get(
       Uri.parse(
-          'https://api.openweathermap.org/data/2.5/weather?q=${Cities.instance.location}&appid=${Cities.apiKey}'),
+          'https://api.openweathermap.org/data/2.5/weather?q=${Cities.instance.location}&appid=${Cities.apiKey}&units=metric'),
     );
 
     if (locationData.statusCode == 200) {
@@ -20,7 +20,8 @@ class ApiData {
       );
     }
     else {
-      throw Exception('Failed to load data');
+      throw Exception('Failed to load data ${locationData.statusCode}');
+
     }
   }
 }

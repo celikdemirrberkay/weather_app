@@ -15,9 +15,9 @@ class HomePageViewModels extends ChangeNotifier {
   HomePageViewModels._();
 
   /// Objeler
-  Cities _cities = Cities();
+  //Cities _cities = Cities();
   ApiData _apiData = ApiData();
-
+  var selectedCity;
 
   /// Gelen şehri döndürüyoruz.
    Future<Cities> getCityInfo() async{
@@ -26,12 +26,17 @@ class HomePageViewModels extends ChangeNotifier {
 
 
 
-
   /// Navigatorla Search Page'e geçecek
-   void goToSearchPage(BuildContext context){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchPageView()));
+   void goToSearchPage(BuildContext context) async{
+     selectedCity = await Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchPageView()));
+    if(selectedCity == null){
+      selectedCity = "Ankara";
+    }
+    else{
+      Cities.instance.location = selectedCity;
+    }
+    notifyListeners();
   }
-
 
 
 
