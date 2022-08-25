@@ -29,7 +29,7 @@ class HomePageViewModels extends ChangeNotifier {
   /// Navigatorla Search Page'e geçecek
    void goToSearchPage(BuildContext context) async{
      selectedCity = await Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchPageView()));
-    if(selectedCity == null){
+    if(selectedCity == null ){
       selectedCity = "Ankara";
     }
     else{
@@ -38,6 +38,10 @@ class HomePageViewModels extends ChangeNotifier {
     notifyListeners();
   }
 
+  void refreshErrorPage(){
+    Cities.instance.location = "Ankara";
+    notifyListeners();
+  }
 
 
 

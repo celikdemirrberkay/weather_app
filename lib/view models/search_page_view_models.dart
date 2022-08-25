@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/views/search_page_view.dart';
-
 import '../models/cities.dart';
 import 'home_page_view_models.dart';
 
@@ -16,8 +15,8 @@ class SearchPageViewModels extends ChangeNotifier{
   void updateHomeScreenStatus() async{
     HomePageViewModels.instance.selectedCity = Cities.instance.location;
     await HomePageViewModels.instance.getCityInfo();
-    print((Cities.instance.location));
   }
+
 
 
 
