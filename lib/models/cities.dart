@@ -8,7 +8,7 @@ class Cities {
   String? weatherType;
 
 
-  static const String apiKey = '82a901440a625f76298f02a43e1ba910';
+  static const String apiKey = 'APIKEY';
 
   Cities({ this.location,this.temp,this.weatherType});
 
